@@ -6,12 +6,17 @@ var equal = 0;
 var fileNames = ['song1.mp3', 'song2.mp3', 'song3.mp3', 'song4.mp3'];
 
 $('.welcome-screen button').on('click', function() {
-    var name = $('#name-input').val();
-    var message = "Welcome, " + name;
-    $('.main .user-name').text(message); //isse jo b msg dala hoga vo display hoga
-    $('.welcome-screen').addClass('hidden'); //phla section hide hojega and dusra display
-    $('.main').removeClass('hidden');
-});
+var name = $('#name-input').val();
+if(name.length>2){
+var message = "Welcome " + name;
+$('.main .user-name').text(message);//isse jo b msg dala hoga vo display hoga
+$('.welcome-screen').addClass('hidden');//phla section hide hojega and dusra display
+$('.main').removeClass('hidden');
+}
+else {
+  $('#name-input').addClass('error');
+}
+    });
 
 //play and pause events ke liye
 function toggleSong() { //togglesong naam ka fnctn bnaya.
@@ -56,9 +61,9 @@ var songs = [{
     'fileName': 'song4.mp3',
     'image':'song4.jpg',
 }]
-window.onload = function() { //it means wait for the website to load and once it is loaded ,run everthing inside the function
 
 //to make the DataTable
+window.onload = function() { //it means wait for the website to load and once it is loaded ,run everthing inside the function
 
 //functions to show the image.
 function changeCurrentSongDetails(songObj) //function in which we pass an argument songObj.
@@ -77,7 +82,7 @@ $('.current-song-album').text(songObj.album)
             song.find('.song-artist').text(obj.artist);
             song.find('.song-album').text(obj.album);
             song.find('.song-length').text(obj.duration);
-            addSongNameClickEvent(obj, i+1)
+            addSongNameClickEvent(obj, i+1);
 
             updateCurrentTime();
             setInterval(function() {
@@ -107,6 +112,7 @@ $('.current-song-album').text(songObj.album)
           });
 
 
+
         function fancyTimeFormat(time) {
 
             var hrs = ~~(time / 3600);
@@ -125,6 +131,25 @@ $('.current-song-album').text(songObj.album)
             return ret;
         }
 
+
+
+        function changeSong(){
+        var music =  songs[Playingnumber].fileName;
+        var song = document.querySelector("audio");
+        song.src = music;
+        toggleSong();
+        changeCurrentSongDetails(songs[Playingnumber]);
+        }
+
+        function ridhi(){
+
+console.log("abcd");
+
+
+        }
+
+
+
 //remaining time and elapsed time display krvane ke liye
         function updateCurrentTime() {
             var song = document.querySelector('audio');
@@ -137,17 +162,6 @@ $('.current-song-album').text(songObj.album)
         }
 
 
-        $('.welcome-screen button').on('click', function() {
-            var name = $('#name-input').val();
-            if (name.length > 2) {
-                var message = "Welcome, " + name;
-                $('.main .user-name').text(message);
-                $('.welcome-screen').addClass('hidden');
-                $('.main').removeClass('hidden');
-            } else {
-                $('#name-input').addClass('error');
-            }
-        });
 
           //click event
                   $('.play-icon').on('click', function() {
@@ -160,7 +174,7 @@ $('.current-song-album').text(songObj.album)
                           toggleSong();
                       }
                   });
-                }
+
 function updateTimer(){
 var song=document.querySelector('audio');
 var cs=song.currentTime();
@@ -170,7 +184,7 @@ $(".progress-filled").css('width',percentage+"%");
 }
 
 
-$(".fa-step-forward clickable").click(function(){
+$(".fa-step-forward").click(function(){
 
 if(Playingnumber == songs.length-1){
 Playingnumber = 0;
@@ -180,12 +194,18 @@ changeSong();
 
 else {
 console.log(Playingnumber);
-  Playingnumber++;
-changeSong();
-}
-})
+Playingnumber++;
 
-$(".fa-step-backward clickable").click(function(){
+console.log("hello");
+console.log(Playingnumber);
+fancyTimeFormat(166);
+ridhi();
+changeSong();
+
+}
+});
+
+$(".fa-step-backward").click(function(){
 
 if(Playingnumber == 0){
 Playingnumber = (songs.length-1);
@@ -195,7 +215,7 @@ changeSong();
 else {
 console.log(Playingnumber);
   Playingnumber--;
-changeSong();
+changeSong()
 }
 
 })
@@ -221,7 +241,7 @@ changeSong();
       $(".content").css("display","inline-block");
       $(".contain").css("display","none");
       }
-      })
+    });
 //shuffle//
       $('.fa-random').on('click',function() {
           $('.fa-random').toggleClass('disabled')
@@ -261,3 +281,4 @@ changeSong();
           audio.currentTime = 0;
       }
   });
+}

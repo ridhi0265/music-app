@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  var audioElement = document.getElementById('audioElement');
+  var audioElement = document.querySelector('audio');
   var audioSrc = audioCtx.createMediaElementSource(audioElement);
   var analyser = audioCtx.createAnalyser();
 
@@ -38,6 +38,7 @@ $(document).ready(function () {
 
      // Copy frequency data to frequencyData array.
      analyser.getByteFrequencyData(frequencyData);
+
 
      // Update d3 chart with new data.
      svg.selectAll('rect')

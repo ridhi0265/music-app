@@ -58,6 +58,10 @@ h1 {
     height: 80px;
     background-color: #282828;
     padding-top: 1rem;
+    position: absolute;
+bottom: 0px;
+width: 100%;
+
 }
 
 .player-buttons {
@@ -168,11 +172,10 @@ h1 {
 
 
 .content {
-    position: relative;
 }
 .current-song-wrapper {
     position: absolute;
-    bottom: 0;
+    bottom: 70px;
     display: flex;
 }
 
@@ -180,6 +183,7 @@ h1 {
     height: 100px;
     width: 100px;
     margin-right: 1rem;
+    position: relative;
 }
 
 .current-song-name {
@@ -217,20 +221,22 @@ background: red;
 .active{
 
 color: grey;
-
 }
 svg{
 position: absolute;
-top: 249px;
-left: 100px;
 display: none;
+top:100px;
 }
+
+
 .contain{
 
 height: 499px;
 width: 100%;
 display: none;
 
-
-
+}
+table.dataTable.no-footer {
+    border-bottom: 1px solid #111;
+    width: 100%;
 }
