@@ -184,12 +184,15 @@ width: 100%;
     width: 100px;
     margin-right: 1rem;
     position: relative;
+    background-image: url("img/song1.jpg");
+    background-size: contain;
 }
 
 .current-song-name {
     font-size: 1.4rem;
     margin-top: 4px;
     margin-bottom: 0;
+
 }
 
 .current-song-album {
